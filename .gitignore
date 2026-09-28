@@ -39,3 +39,4 @@ wheels/
 .idea
 db.sqlite3
 .env
+!theme/static/css/dist/
