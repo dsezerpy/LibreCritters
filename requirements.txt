@@ -1,4 +1,5 @@
 Django>=6.1,<6.2
 wagtail>=8.0,<8.1
-dj_database_url
+dj-database-url
 django-tailwind
+psycopg2-binary
