@@ -3,3 +3,4 @@ wagtail>=8.0,<8.1
 dj-database-url
 django-tailwind
 psycopg2-binary
+whitenoise[brotli]
