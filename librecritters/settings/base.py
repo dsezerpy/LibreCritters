@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from pathlib import Path
 import os
-import dj_database_url
+import dj-database-url
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = PROJECT_DIR.parent
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",
     "tailwind",
 ]
 TAILWIND_APP_NAME = 'theme'
