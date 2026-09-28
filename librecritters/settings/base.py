@@ -17,7 +17,7 @@ import dj_database_url
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = PROJECT_DIR.parent
-
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-key-change-in-prod')
 CSRF_TRUSTED_ORIGINS = os.environ.get(
     'CSRF_TRUSTED_ORIGINS',
     'https://librecritters.org,https://www.librecritters.org'

@@ -13,7 +13,7 @@ DATABASES = {
         conn_health_checks=True,
     )
 }
-
+SECRET_KEY = os.environ.get('SECRET_KEY') or SECRET_KEY
 # Domain security
 ALLOWED_HOSTS = [
     'librecritters.org',
