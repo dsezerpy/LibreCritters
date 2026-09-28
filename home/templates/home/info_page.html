@@ -2,14 +2,24 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-    <div class="container">
-        <h1>{{ page.title }}</h1>
-        
-        <!-- This automatically renders your StreamField blocks -->
-        <div class="page-content">
-            {% for block in page.body %}
-                {% include_block block %}
-            {% endfor %}
+<div class="min-h-[85vh] py-12 px-4 sm:px-6 lg:px-8 flex justify-center items-start">
+    <article class="max-w-3xl w-full bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
+
+        <!-- Category Badge & Page Title -->
+        <div class="border-b border-slate-800/80 pb-6 mb-6">
+            <span class="inline-block text-xs font-semibold uppercase tracking-widest text-emerald-400 bg-emerald-950/60 border border-emerald-800/50 px-3 py-1 rounded-full mb-3">
+                Documentation
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                {{ page.title }}
+            </h1>
         </div>
-    </div>
+
+        <!-- Styled Wagtail Content Body -->
+        <div class="prose-critters text-slate-300 text-base sm:text-lg leading-relaxed">
+            {% include_block page.body %}
+        </div>
+
+    </article>
+</div>
 {% endblock %}
