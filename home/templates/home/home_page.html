@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="max-w-3xl py-6 space-y-4">
+    <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+        {{ page.title }}
+    </h1>
+
+        <div class="prose prose-invert max-w-none text-slate-300 leading-relaxed [&>p]:mb-4 [&_a]:text-brand [&_a]:underline hover:[&_a]:text-brand-hover">
+            {{ page.intro|richtext }}
+        </div>
+</section>
+
+<hr class="border-stroke my-8" />
+
+<!-- Recently Added Species Grid -->
+<section class="space-y-6">
+    <h2 class="text-2xl font-bold text-white tracking-tight">Recently Added Species</h2>
+
+    {% if species_list %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for species in species_list %}
+                <a href="{% pageurl species %}" class="group bg-surface border border-stroke rounded-xl overflow-hidden hover:border-brand/50 transition-all shadow-md flex flex-col">
+                    {% if species.cover_image %}
+                        <div class="aspect-video w-full overflow-hidden bg-app">
+                            {% image species.cover_image fill-600x337 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" %}
+                        </div>
+                    {% else %}
+                        <div class="aspect-video w-full bg-gradient-to-br from-emerald-950/60 via-slate-900 to-panel flex flex-col items-center justify-center p-4 text-center border-b border-stroke group-hover:from-emerald-900/40 transition-colors">
+                            <span class="text-xs font-semibold text-slate-400 tracking-wider uppercase">Open Species Spec</span>
+                        </div>
+                    {% endif %}
+
+                    <div class="p-5 flex flex-col flex-grow justify-between space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-brand/10 text-brand border border-brand/20">
+                                        {{ species.species_type }}
+                                    </span>
+                                    {% if species.is_featured %}
+                                        <span class="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                                            Featured
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                <span class="text-xs text-slate-400 font-mono">
+                                    {{ species.short_license }}
+                                </span>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-white group-hover:text-brand transition-colors flex items-center justify-between">
+                                <span>{{ species.title }}</span>
+                                {% if species.has_content_warning %}
+                                    <span class="text-xs text-amber-400" title="Contains Content Warning">⚠️</span>
+                                {% endif %}
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">by {{ species.display_creator }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="rounded-xl border border-dashed border-stroke p-8 text-center bg-surface/30">
+            <p class="text-slate-400">No species added yet. Be the first!</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

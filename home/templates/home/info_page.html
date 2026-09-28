@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ page.title }}</h1>
+        
+        <!-- This automatically renders your StreamField blocks -->
+        <div class="page-content">
+            {% for block in page.body %}
+                {% include_block block %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

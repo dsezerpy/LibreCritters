@@ -1,0 +1,64 @@
+{% load static wagtailcore_tags wagtailuserbar tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+            {% wagtail_site as current_site %}
+            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}
+        </title>
+        {% if page.search_description %}
+        <meta name="description" content="{{ page.search_description }}" />
+        {% endif %}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {# Force all links in live preview #}
+        {% if request.in_preview_panel %}
+        <base target="_blank">
+        {% endif %}
+
+        {# Django-Tailwind Template Tag #}
+        {% tailwind_css %}
+
+        {% block extra_css %}{% endblock %}
+    </head>
+
+    <body class="bg-app text-slate-100 min-h-screen flex flex-col antialiased {% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+        <!-- Navigation Bar -->
+        <header class="border-b border-stroke bg-surface/80 backdrop-blur sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <a href="/" class="text-xl font-bold tracking-tight text-white hover:text-brand transition-colors">
+                    LibreCritters
+                </a>
+                <nav class="flex items-center gap-6 text-sm font-medium">
+                    <a href="/" class="text-slate-300 hover:text-white transition-colors">Browse</a>
+                    <a href="/what-is-copyleft/" class="text-slate-300 hover:text-white transition-colors">What is Copyleft?</a>
+                    <a href="#" target="_blank" class="bg-brand hover:bg-brand-hover text-white px-3.5 py-2 rounded-lg font-semibold transition-colors">
+                        Submit Species
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-stroke bg-surface/50 py-6 text-center text-sm text-slate-500">
+            <p>LibreCritters — Copyleft & Open Species Hub</p>
+        </footer>
+
+        <script type="text/javascript" src="{% static 'js/LibreCritters.js' %}"></script>
+        {% block extra_js %}{% endblock %}
+    </body>
+</html>

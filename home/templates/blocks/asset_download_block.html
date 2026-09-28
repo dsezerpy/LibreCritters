@@ -1,0 +1,13 @@
+<div class="bg-surface border border-stroke rounded-xl p-4 flex items-center justify-between gap-4 shadow-sm">
+    <div class="space-y-1 min-w-0">
+        <div class="text-sm font-bold text-white truncate">{{ value.title }}</div>
+        <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-400 bg-panel px-2 py-0.5 rounded border border-stroke inline-block">
+            {{ value.file_type_display }}
+        </span>
+    </div>
+    {% if value.file %}
+        <a href="{{ value.file.url }}" download class="bg-brand hover:bg-brand-hover text-white text-xs font-semibold px-3 py-2 rounded-lg transition-colors whitespace-nowrap flex-shrink-0">
+            Download
+        </a>
+    {% endif %}
+</div>

@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Central Design Tokens & Color Palette */
+@theme {
+  --color-app: #0f1115;          /* Main page dark background */
+  --color-surface: #161920;      /* Infoboxes, cards, navbar background */
+  --color-panel: #1e222d;        /* Headers, sub-containers, trait blocks */
+  --color-stroke: #2a2f3d;       /* Borders, dividers, outlines */
+  --color-brand: #10b981;        /* Primary accent (emerald green) */
+  --color-brand-hover: #059669;  /* Accent hover state */
+}
+
+/* Base Body Resets */
+@layer base {
+  body {
+    background-color: var(--color-app);
+    color: #f1f5f9; /* Slate 100 */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+}
+@source "../../../**/*.{html,py,js}";
