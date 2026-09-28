@@ -3,7 +3,7 @@ import dj_database_url
 from .base import *
 
 # Explicitly disable debug mode
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False').lower() in ('true', '1', 't')
 
 # Database configuration
 DATABASES = {
